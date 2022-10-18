@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>示例</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <br />
+    <br />
+
+    <button id="transferIt">
+        打开imToken转账
+    </button>
+
+    <br />
+    <br />
+
+    <button id="transferTp">
+        打开TokenPocket转账
+    </button>
+
+</body>
+
+
+<script>
+    $(function () {
+
+        //打开imToken支付
+        $('#transferIt').click(function () {
+            var url = window.location.protocol +'//'+window.location.host+'/payment.html';
+            window.location.href = "imtokenv2://navigate?screen=DappView&url=" + url;
+        });
+
+        //打开TokenPocket支付
+        $('#transferTp').click(function () {
+            let param = {
+                protocol: "TokenPocket",
+                version: "2.0",
+                blockchain: "tron",
+                to: "TDQWZsQJpzj1wPELUhBPVLjFU4d1NYWfzL",
+                amount: "1",
+                symbol: "USDT",
+                precision: "4",
+                action: "transfer",
+                contract: "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+                dappIcon: "https://tp-statics.tokenpocket.pro/token/1567500487877-rexx.png",
+                dappName: "商品名称"
+            }
+            window.location.href = 'tpoutside://pull.activity?param=' + JSON.stringify(param);
+        });
+
+    })
+</script>
+</body>
+
+</html>

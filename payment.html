@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>支付</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <br />
+    <br />
+    <button id="payment">
+        立即支付
+    </button>
+
+
+</body>
+
+
+<script>
+
+    $(function () {
+        $('#payment').click(function () {
+            if (!!window.imToken) {
+                alert("TRUE");
+                imToken.callAPI('user.showAccountSwitch', { chainType: null }, function (err, address) {
+                    if (err) {
+                        alert(err.message)
+                    } else {
+                        alert(address)
+                    }
+                })
+
+            } else {
+                alert("请在DAPP浏览器打开");
+            }
+        });
+    })
+
+</script>
+
+</body>
+
+</html>
